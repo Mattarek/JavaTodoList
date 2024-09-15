@@ -1,0 +1,3 @@
+qwe,1,LOW,2024-12-12,false,Programowanie
+Admin,Adminx2,HIGH,null,false,cF
+zzz,zzz,LOW,2025-12-31,false,zzzzz
