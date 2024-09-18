@@ -8,12 +8,11 @@ public class Main {
         // Tworzenie instancji listy zadań ToDoList
         final ToDoList toDoList = new ToDoList();
 
-
         // Zmienna kontrolująca pętlę programu
         boolean running = true;
-
         final FileHandler fileHandler = new FileHandler();
 
+        System.out.println(toDoList.getTasks());
         // Wczytanie zadań z pliku do listy przy starcie programu
         toDoList.getTasks().addAll(fileHandler.loadTasksFromFile());
         // Pętla programu - główne menu
@@ -29,7 +28,7 @@ public class Main {
             System.out.println("7. Wyświetl zadania wg kategorii");
             System.out.println("8. Zapisz zadania do pliku");
             System.out.println("9. Wyjście");
-            System.out.print("Wybierz opcję: ");
+            System.out.print("Wybierz opcję z zakresu [1-9]: ");
 
             // Odczyt wyboru użytkownika, definiujemy, że nasza wartość będzie intem, to daje nam znak zachęty, aby wpisać ilczbę
             // to przyjmuje tylko pierwszą wartość
@@ -61,6 +60,7 @@ public class Main {
                     // Jeśli użytkownik wpisze 'null', deadline jest ustawiany na null
                     final LocalDate deadline = deadlineStr.equalsIgnoreCase("null") ? null : LocalDate.parse(deadlineStr);
 
+                    System.out.println(deadline);
                     System.out.print("Podaj kategorię zadania: ");
                     final String category = scanner.nextLine();
 
@@ -82,6 +82,9 @@ public class Main {
                     break;
 
                 case 5:
+                    System.out.println("1) Wyświetl ukończone zadania.");
+                    System.out.println("2) Wyświetl zadania będące w trakcie realizacji.");
+
                     final int filterChoice = scanner.nextInt();
                     scanner.nextLine(); // Oczyszczenie bufora
 
@@ -114,10 +117,12 @@ public class Main {
                     break;
 
                 case 9:
-                    // Wyjście z programu - zapis zadań do pliku i zakończenie pętli
+                    System.out.println(toDoList.getTasks());
                     fileHandler.saveTasksToFile(toDoList.getTasks());
                     running = false;
                     break;
+                default:
+                    System.out.println("Wybrana opcja nie znajduje się w przedziale 1-9");
             }
         }
         // Zamknięcie skanera
